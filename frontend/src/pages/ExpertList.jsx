@@ -73,7 +73,7 @@ const ExpertList = () => {
         <Loader count={6} />
       ) : error ? (
         <ErrorState message={error} onRetry={refetch} />
-      ) : experts.length === 0 ? (
+      ) : !experts || experts.length === 0 ? (
         <div className="text-center py-20">
           <div className="text-5xl mb-4">🔍</div>
           <h3 className="text-lg font-semibold text-gray-700 mb-2">No experts found</h3>

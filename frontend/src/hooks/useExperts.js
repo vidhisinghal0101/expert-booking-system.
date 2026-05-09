@@ -14,10 +14,14 @@ export const useExperts = (params) => {
     setError(null);
     try {
       const res = await fetchExperts(params);
-      setExperts(res.data.experts);
-      setTotal(res.data.total);
-      setPage(res.data.page);
-      setTotalPages(res.data.totalPages);
+      if (res.data && Array.isArray(res.data.experts)) {
+        setExperts(res.data.experts);
+        setTotal(res.data.total || 0);
+        setPage(res.data.page || 1);
+        setTotalPages(res.data.totalPages || 1);
+      } else {
+        throw new Error('Invalid response from server. Please check your API URL.');
+      }
     } catch (err) {
       setError(err.message);
     } finally {
