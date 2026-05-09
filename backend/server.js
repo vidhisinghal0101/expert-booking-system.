@@ -43,7 +43,12 @@ app.use(errorHandler);
 
 // Connect to MongoDB and start server
 const PORT = process.env.PORT || 5000;
-const MONGODB_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/expertbooking';
+const MONGODB_URI = process.env.MONGO_URI;
+
+if (!MONGODB_URI) {
+  console.error('FATAL ERROR: MONGO_URI is not defined in environment variables.');
+  process.exit(1);
+}
 
 mongoose.connect(MONGODB_URI)
   .then(async () => {
