@@ -16,8 +16,17 @@ const httpServer = http.createServer(app);
 initSocket(httpServer);
 
 // Middleware
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:5175",
+  process.env.CLIENT_URL,
+  process.env.VERCEL_URL,
+  process.env.NETLIFY_URL
+].filter(Boolean);
+
 app.use(cors({ 
-  origin: ["http://localhost:5173", "http://localhost:5174", "http://localhost:5175"], 
+  origin: allowedOrigins, 
   credentials: true 
 }));
 app.use(express.json());
