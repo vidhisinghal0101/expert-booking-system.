@@ -12,7 +12,7 @@ api.interceptors.response.use(
   }
 );
 
-export const fetchExperts = (params) => api.get('/experts', { params });
-export const fetchExpertById = (id) => api.get(`/experts/${id}`);
+export const fetchExperts = (params) => api.get('experts', { params });
+export const fetchExpertById = (id) => api.get(`experts/${id}`);
 
 export default api;
